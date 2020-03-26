@@ -6,7 +6,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: "", email: "" };
+    this.state = { user: "", email: "", messages: "" };
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -25,7 +25,6 @@ export default class App extends React.Component {
           description:
             "a means of protecting data (insufficient for production, used as example)",
           type: "string",
-          pattern: "^/[^#%&*{}\\:<>?/+]+$",
           allowEmpty: false
         }
       }
@@ -41,20 +40,32 @@ export default class App extends React.Component {
     }, {});
 
     console.log(messages);
+    this.setState({ messages: messages });
   };
   render() {
-    const { user, email } = this.state;
+    const { user, email, messages } = this.state;
 
     return (
       <div className="App">
         <h1>Hello CodeSandbox</h1>
-        <input type="text" name="user" value={user} onChange={this.onChange} />
-        <input
-          type="text"
-          name="email"
-          value={email}
-          onChange={this.onChange}
-        />
+        <p>
+          <input
+            type="text"
+            name="user"
+            value={user}
+            onChange={this.onChange}
+          />
+          {messages.user}
+        </p>
+        <p>
+          <input
+            type="text"
+            name="email"
+            value={email}
+            onChange={this.onChange}
+          />
+          {messages.email}
+        </p>
         <button type="button" onClick={this.submit}>
           Check
         </button>
