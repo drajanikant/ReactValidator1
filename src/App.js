@@ -6,7 +6,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: "", email: "", messages: "" };
+    this.state = { user: "", email: "", messages: "", valid: false };
   }
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -40,7 +40,7 @@ export default class App extends React.Component {
     }, {});
 
     console.log(messages);
-    this.setState({ messages: messages });
+    this.setState({ messages: messages, valid: valid.valid });
   };
   render() {
     const { user, email, messages } = this.state;
